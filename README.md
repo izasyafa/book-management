@@ -65,6 +65,8 @@ php artisan storage:link
 ### 🔹 Menjalankan Seeder
 ```bash
 php artisan db:seed
+php artisan db:seed --class=PermissionsSeeder
+php artisan db:seed --class=UserSeeder
 ```
 
 ---
