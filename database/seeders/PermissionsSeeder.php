@@ -36,6 +36,16 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update publishers']);
         Permission::create(['name' => 'delete publishers']);
 
+        Permission::create(['name' => 'view roles']);
+        Permission::create(['name' => 'create roles']);
+        Permission::create(['name' => 'update roles']);
+        Permission::create(['name' => 'delete roles']);
+
+        Permission::create(['name' => 'view permissions']);
+        Permission::create(['name' => 'create permissions']);
+        Permission::create(['name' => 'update permissions']);
+        Permission::create(['name' => 'delete permissions']);
+
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $role = Role::create(['name' => 'writer']);
