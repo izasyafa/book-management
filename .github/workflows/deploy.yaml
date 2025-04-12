@@ -1,0 +1,31 @@
+name: Laravel Autodeploy on github actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pull-from-main:
+    name: Pull from main
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: pull from main
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /home/u628155871/domains/ppm-alhikmahsemarang.com/public_html/test-autodeploy
+            git pull origin main
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+            php artisan optimize
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
